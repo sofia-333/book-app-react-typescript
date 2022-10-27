@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { BASE_URL, openNotificationWithIcon } from '../utils/helpers'
-import { Book } from '../utils/types'
+import {BASE_URL, openNotificationWithIcon} from '../utils/helpers'
+import {Book} from '../utils/types'
 
 export const getBookByISBN = (isbn: string) => {
     return axios.get(BASE_URL + `book/${isbn}`)

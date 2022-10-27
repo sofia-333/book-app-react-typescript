@@ -1,8 +1,8 @@
-import { Button } from "antd";
-import React, { useState } from "react";
+import {Button} from "antd";
+import React, {useState} from "react";
 import ListItems from "./ListItems";
 import "./ListInfo.css"
-import { ListItem } from "./../../utils/types"
+import {ListItem} from "../../utils/types"
 
 
 interface IListInfo {
@@ -13,7 +13,7 @@ interface IListInfo {
     title: string;
 }
 
-const ListInfo = ({ items, displayAttribute = 'name', isLink = false, itemsShowNum = 5, title }: IListInfo) => {
+const ListInfo = ({items, displayAttribute = 'name', isLink = false, itemsShowNum = 5, title}: IListInfo) => {
     const [showMore, setShowMore] = useState(false);
 
     return (
@@ -24,25 +24,29 @@ const ListInfo = ({ items, displayAttribute = 'name', isLink = false, itemsShowN
                     {/* display items without "show more" if items length is less or equal than num of items we want to show by default */}
                     {items.length <= itemsShowNum ?
                         <div>
-                            <ListItems isLink={isLink} items={items} displayAttribute={displayAttribute} />
+                            <ListItems isLink={isLink} items={items} displayAttribute={displayAttribute}/>
                         </div>
                         :
                         <div>
                             {/* display items with "show more" clickable link */}
-                            <ListItems isLink={isLink} items={items.slice(0, itemsShowNum)} displayAttribute={displayAttribute} />
+                            <ListItems isLink={isLink} items={items.slice(0, itemsShowNum)}
+                                       displayAttribute={displayAttribute}/>
                             {showMore &&
                                 <div>
-                                    <ListItems isLink={isLink} items={items.slice(itemsShowNum - items.length)} displayAttribute={displayAttribute} />
-                                </div >
+                                    <ListItems isLink={isLink} items={items.slice(itemsShowNum - items.length)}
+                                               displayAttribute={displayAttribute}/>
+                                </div>
                             }
                             {showMore ?
-                                <Button type="link" size="small" onClick={() => setShowMore(false)} className="px-0 btn-padding" >Show Less</Button>
+                                <Button type="link" size="small" onClick={() => setShowMore(false)}
+                                        className="px-0 btn-padding">Show Less</Button>
                                 :
-                                <Button type="link" size="small" onClick={() => setShowMore(true)} className="px-0 btn-padding">Show More</Button>
+                                <Button type="link" size="small" onClick={() => setShowMore(true)}
+                                        className="px-0 btn-padding">Show More</Button>
                             }
-                        </div >
+                        </div>
                     }
-                </div >
+                </div>
             }
         </div>
 

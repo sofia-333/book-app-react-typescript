@@ -1,8 +1,8 @@
 import React from "react";
-import { Collapse } from "antd";
+import {Collapse} from "antd";
 
 
-const { Panel } = Collapse;
+const {Panel} = Collapse;
 
 const text = (
     <div className="pl-1 text-orange-900">

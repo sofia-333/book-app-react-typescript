@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { ISBN_REGEX, openNotificationWithIcon } from '../../utils/helpers'
-import { Book } from '../../utils/types'
-import { getBookByISBN } from '../../services/bookService'
+import React, {useState} from "react";
+import {ISBN_REGEX, openNotificationWithIcon} from '../../utils/helpers'
+import {Book} from '../../utils/types'
+import {getBookByISBN} from '../../services/bookService'
 import BookComponent from "./Book";
-import { Input } from "antd";
+import {Input} from "antd";
 import BooksImage from '../../assets/books.png'
 import IsbnCollapse from "./IsbnCollapse";
 
-const { Search } = Input;
+const {Search} = Input;
 
 
 const BooksView = () => {
@@ -35,7 +35,7 @@ const BooksView = () => {
         setLoading(false);
     }
 
-    const onSearchChange = (event: any) => {
+    const onSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setIsbn(event.target.value);
     }
 
@@ -52,20 +52,21 @@ const BooksView = () => {
                             onChange={(e) => onSearchChange(e)}
                         />
                     </div>
-                </div >
-                <IsbnCollapse />
+                </div>
+                <IsbnCollapse/>
                 {!book ?
                     <div className="flex text-center flex-col">
                         <div className="p-2 pl-5">
-                            <p className="text-orange-900 text-xl mt-4">Search for your book easily using ISBN 10 or 13!</p>
+                            <p className="text-orange-900 text-xl mt-4">Search for your book easily using ISBN 10 or
+                                13!</p>
                         </div>
                         <div className="rounded-2xl border-grey-700 border mx-auto">
-                            <img alt="Books" src={BooksImage} className="w-[550px] rounded-3xl" />
+                            <img alt="Books" src={BooksImage} className="w-[550px] rounded-3xl"/>
                         </div>
                     </div>
                     :
                     <div>
-                        <BookComponent book={book} loading={loading} />
+                        <BookComponent book={book} loading={loading}/>
                     </div>
                 }
             </div>
