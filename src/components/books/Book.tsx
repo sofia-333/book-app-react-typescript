@@ -12,7 +12,7 @@ interface IBook {
 const BookComponent = ({book, loading}: IBook) => {
     return (
         <div className="w-[1000px] mx-auto mt-16">
-            <Card title={book.title || ""}>
+            <Card title={!loading && book.title ? book.title : ""}>
                 {loading ?
                     <Skeleton loading active/>
                     :
