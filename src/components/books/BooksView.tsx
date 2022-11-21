@@ -1,11 +1,11 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {ISBN_REGEX, openNotificationWithIcon} from '../../utils/helpers'
 import {Book} from '../../utils/types'
 import {getBookByISBN} from '../../services/bookService'
 import BookComponent from "./Book";
 import {Input} from "antd";
-import BooksImage from '../../assets/books.png'
 import IsbnCollapse from "./IsbnCollapse";
+import DefaultBookView from "./DefaultBookView";
 
 const {Search} = Input;
 
@@ -19,20 +19,19 @@ const BooksView = () => {
     const getBookData = () => {
         if (!isbn) return
 
-        setLoading(true);
-
         if (ISBN_REGEX.test(isbn)) {
+            setLoading(true);
             getBookByISBN(isbn).then((newBook) => {
                 if (newBook) {
                     setBook(newBook);
                     setIsbn("");
                 }
+                setLoading(false);
             });
         } else {
             openNotificationWithIcon("Wrong ISBN number provided.");
         }
 
-        setLoading(false);
     }
 
     const onSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,15 +54,7 @@ const BooksView = () => {
                 </div>
                 <IsbnCollapse/>
                 {!book ?
-                    <div className="flex text-center flex-col">
-                        <div className="p-2 pl-5">
-                            <p className="text-orange-900 text-xl mt-4">Search for your book easily using ISBN 10 or
-                                13!</p>
-                        </div>
-                        <div className="rounded-2xl border-grey-700 border mx-auto">
-                            <img alt="Books" src={BooksImage} className="w-[550px] rounded-3xl"/>
-                        </div>
-                    </div>
+                    <DefaultBookView/>
                     :
                     <div>
                         <BookComponent book={book} loading={loading}/>
