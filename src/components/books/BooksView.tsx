@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {ISBN_REGEX, openNotificationWithIcon} from '../../utils/helpers'
 import {Book} from '../../utils/types'
 import {getBookByISBN} from '../../services/bookService'
